@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>로그인</title>
+<style>
+	#container	{ 
+		background-color: gray; 
+		height:120px;
+		margin: auto;
+		text-align: center;
+	}
+	#container h2 {
+		margin-top: -50px;
+        text-align: center;
+	}
+	#content {
+		background-color: lightgray;
+		display: flex;
+		flex-wrap: wrap;
+		float: left;
+		width: 960px;
+		height: 660px;
+		text-align: center;
+
+	}
+	#content>article{
+		margin-left: 30%;
+		margin-top: 20%;
+		/* margin: auto; */
+		width: 100%;
+		padding: 15px;
+	}
+	aside {
+		background-color:#DCDAD9;
+		height:60px;
+		width: 120px;
+		display: flex;
+		position: absolute;
+		margin-left: 840px;
+	}
+	aside>h4 {
+		padding-left: 10px;
+	}
+	footer {
+		padding: 10px;
+		background-color:#555555; 
+		clear:both; 
+		height:100px;
+	}
+	footer>p {
+		margin: auto;
+		text-align: center;
+	}
+    input {
+        margin-top: 10px;
+        margin-right: 5px;
+        padding: 5px;
+    }
+	.input-inform {
+		width: 200px;
+	}
+
+	.input-button {
+		width: 150px;
+		height: 50px;
+		background-color: rgb(110, 109, 109);
+		color: white;
+		font-size: 1.5em;
+		border: 0px;
+	}
+    
+    #gender {
+        padding: 5px;
+        margin-top: 10px;
+    }
+	td {
+		font-size: 20px;
+		padding: 10px;
+	}
+
+	ul {
+		margin-left: -30px;
+	}
+	li {
+		list-style-type: none;
+		text-align: left;
+
+	}
+	li a {
+		vertical-align: middle;
+		float: left;
+		margin-right: 10px;
+		text-decoration: none;
+		color: blue;
+		position: relative;
+		padding: 5px;
+	}
+
+	header {
+		background-color: navy;
+		color: white;
+		height: 110px;
+	}
+	header>h2 {
+		height: 100%;
+		line-height: 100px;
+	}
+	.none_block {
+		display: none;
+	}
+	
+</style>
+<script src="js/jquery-3.6.0.js"></script>
+</head>
+	<body>
+		<div id="container" style="width: 960px;">
+			<header>
+				<img src="./logo.png" style="width: 80px; height: 75px;">
+				<h2>로그인</h2>
+			</header>
+			<section id="content">
+				<article>
+                    <form name="loginFrm" action="calculator.html">
+                        <table>
+                            <tr>
+                                <td>아이디 : </td>
+                                <td><input type="text" name="userid" id="userid" class="input-inform"></td>
+                            </tr>
+                            <tr>
+                                <td>비밀번호 : </td>
+                                <td><input type="password" name="userpassword" id="userpassword" class="input-inform"></td>
+                            </tr>
+                        </table>
+                        <table>
+                            <tr>
+                                <td><input type="submit" value="로그인" class="input-button"></td>
+                                <td><input type="button" value="회원가입" class="input-button" onclick="join();"></td>
+                            </tr>
+                        </table>
+                    </form>    
+				</article>
+			</section>
+			<aside>
+				<ul>
+					<li><strong>메뉴</strong></li>
+					<li><a class = "none_block" href="./introduce.html">개발자 소개</a></li>
+					<li><a class = "none_block" href="./search.html">아이디찾기</a></li>
+					<li><a class = "none_block" href="./join.html">회원가입</a></li>
+				</ul>
+			</aside>
+​               
+			<footer>
+				<p>kh정보교육원 수강생 염진기 프로젝트</p>
+			</footer>
+		</div>
+	</body>
+    <script>
+		$("aside").hover(function(){
+				$("aside").animate({
+					height : '660px'
+				});
+				$(".none_block").css('display',"block");
+
+			},function(){
+				$("aside").animate({
+					height : '60px'
+				});
+				$(".none_block").css('display',"none");
+			});
+        function join(){
+            window.location.href = "./join.html";
+        }
+
+        function getentries(userid, userpassword){
+            const entries = JSON.parse(localStorage.getItem('studententries')) || [];
+            const getinform = entries.find(element => element.userid == userid);
+			// console.log(getinform);
+            // console.log(getinform);
+            // console.log(getinform.password);
+            // console.log(userpassword.value);
+            if(typeof getinform == "undefined" || getinform == "" || getinform == null){
+				return "false";
+			}
+			else if(getinform.userpassword == userpassword){
+                return "true";
+            }
+            return "false";
+        }
+
+        document.loginFrm.onsubmit = function(){
+			const userid = $("#userid").val();
+			const userpassword = $("#userpassword").val();
+			const a = getentries(userid, userpassword);
+			if(userid == "") {
+				alert('아이디를 입력해주세요.')
+				return false;
+			}
+			else if(userpassword == ""){
+				alert('비밀번호를 입력해주세요.')
+				return false;
+			}else{
+				if(a == "true"){
+					alert('로그인 되었습니다.');
+					return true;
+				}
+				else {
+					alert('존재하지 않는 id거나 비밀번호가 일치하지 않습니다.');
+					return false;
+				}
+			}
+		};
+    </script>
+</html>

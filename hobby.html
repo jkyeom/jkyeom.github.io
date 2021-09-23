@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>관심사</title>
+<style>
+	#container	{ 
+		background-color: navy; 
+		height:120px;
+		margin: auto;
+	}
+	header {
+		text-align: center;
+	}
+	#container h2 {
+		color: white;
+		margin-top: -30px;
+        text-align: center;
+	}
+	#content {
+		background-color: lightgray;
+		display: flex;
+		flex-wrap: wrap;
+		float: left;
+		width: 960px;
+		height: 660px;
+	}
+	#content>article{
+		padding: 15px;
+	}
+	aside {
+		background-color:#DCDAD9;
+		height:50px;
+		width: 120px;
+		display: flex;
+		position: absolute;
+		margin-left: 840px;
+	}
+	aside>h4 {
+		padding-left: 10px;
+	}
+	footer {
+		padding: 10px;
+		background-color:#555555; 
+		clear:both; 
+		height:100px;
+		z-index: -1;
+		position: relative;
+	}
+	footer>p {
+		margin: auto;
+		text-align: center;
+		
+	}
+
+	.gallerys {
+		width: 400px;
+		height: 500px;
+		border: 2px solid black;
+		display: inline-block;
+	}
+	#gallery-coco {
+		display: inline-block;
+	}
+	#gallery-kong {
+		display: inline-block;
+	}
+	ul {
+		list-style: none;
+	}
+	.pic-small-row {
+		width: 306px;
+		height: 210px;
+	}
+	.pic-small-col {
+		width: 150px;
+		height: 200px;
+	}
+
+	.pic-big-row {
+		width: 500px;
+		height: 400px;
+		position: absolute;
+	}
+	.pic-big-col {
+		width: 500px;
+		height: 700px;
+		position: absolute;
+	}
+
+	.pic-big-col-intro {
+		width: 330px;
+		height: 330px;
+	}
+
+	.pic-small-row:hover + .pic-big-row {
+		display:block;
+		margin-left: 100px;
+		margin-top: 10px;
+	}
+
+	.pic-small-col:hover + .pic-big-col {
+		display:block;
+		margin-left: 100px;
+		margin-top: 10px;
+	}
+
+	ul {
+		margin-left: -30px;
+	}
+	li {
+		text-align: left;
+	}
+	li a {
+		vertical-align: middle;
+		float: left;
+		margin-right: 10px;
+		text-decoration: none;
+		color: blue;
+		position: relative;
+		padding: 5px;
+	}
+	p {
+		text-align: center;
+	}
+	#introduce {
+		padding-top: 20px;
+		width: 400px;
+		height: 500px;
+		border: 2px solid black;
+		background-color: lightseagreen;
+		text-align: center;
+		float: left;
+		visibility: hidden;
+	}
+	.display_none{
+		display: none;
+	}
+
+	#introduce p {
+		font-weight: bold;
+		color: white;
+
+	}
+
+	h3 {
+		color: hotpink;
+		text-align: center;
+	}
+
+	#introduce2 {
+		padding-top: 20px;
+		width: 400px;
+		height: 500px;
+		border: 2px solid black;
+		background-color: lightsteelblue;
+		text-align: center;
+		float: left;
+		visibility: hidden;
+	}
+
+	#introduce2 p {
+		font-weight: bold;
+	}
+	.none_block{
+		display: none;
+	}
+</style>
+<script src="js/jquery-3.6.0.js"></script>
+</head>
+	<body>
+		<div id="container" style="width: 960px;">
+			<header>
+				<img src="./logo.png" style="width: 80px; height: 75px;">
+				<h2>관심사</h2>
+			</header>
+			<section id="content">
+				<article>
+					<h3>코코(토끼)와 콩이(고양이)를 소개합니다.</h3>
+					<div class ="gallerys" id="gallery-coco">
+						<ul>
+							<li>
+								<img src="./picture/coco1.jpeg" class="pic-small-col"> <!--pic-small-col-->
+								<img src="./picture/coco1.jpeg" class="pic-big-col display_none"> <!--pic-big-col-->
+								<img src="./picture/coco2.jpeg" class="pic-small-col">
+								<img src="./picture/coco2.jpeg" class="pic-big-col display_none">
+							</li>
+							<li>
+								<img src="./picture/coco3.jpeg" class="pic-small-row"> <!--pic-small-row-->
+								<img src="./picture/coco3.jpeg" class="pic-big-row display_none"> <!--pic-big-row-->
+							</li>
+						</ul>
+						<p id="introduce-coco">코코 소개글 보기</p>
+					</div>
+					<div class ="gallerys" id="gallery-kong">
+						<ul>
+							<li>
+								<img src="./picture/cong1.jpeg" class="pic-small-col">
+								<img src="./picture/cong1.jpeg" class="pic-big-col display_none">
+								<img src="./picture/cong2.jpeg" class="pic-small-col">
+								<img src="./picture/cong2.jpeg" class="pic-big-col display_none">
+							</li>
+							<li>
+								<img src="./picture/cong3.jpeg" class="pic-small-row">
+								<img src="./picture/cong3.jpeg" class="pic-big-row display_none">
+
+							</li>
+						</ul>
+						<p id="introduce-cong">콩이 소개글 보기</p>
+					</div>
+					<div id = "introduce">
+						<img src="./picture/introduce-coco.jpeg" class = "pic-big-col-intro">
+						<p>이름 : 코코</p>
+						<p>나이 : 1살</p>
+						<p>가족이 된 날 : 2020년 07월 24일</p>
+						<p>성격 : 예민함, 고집있음, 성질있음</p>
+					</div>
+					<div id = "introduce2">
+						<img src="./picture/introduce-cong.jpeg" class = "pic-big-col-intro">
+						<p>이름 : 콩이</p>
+						<p>나이 : 1살</p>
+						<p>가족이 된 날 : 2020년 07월 22일</p>
+						<p>성격 : 식탐이 강함, 낯가림이 심함, 장난끼가 많음</p>
+					</div>
+				</article>
+			</section>
+			<aside>
+				<ul>
+					<li><strong>메뉴</strong></li>
+					<li><a class = "none_block" href="./introduce.html">개발자 소개</a></li>
+					<li><a class = "none_block" href="./login.html">로그인</a></li>
+					<li><a class = "none_block" href="./join.html">회원가입</a></li>
+					<!-- <li><a class = "none_block" href="./calculator.html">학점관리</a></li> -->
+				</ul>
+			</aside>
+
+			<footer>
+				<p>kh정보교육원 수강생 염진기 프로젝트</p>
+			</footer>
+		</div>
+		<script>
+			$("aside").hover(function(){
+				$("aside").animate({
+					height : '660px'
+				});
+				$(".none_block").css('display',"block");
+
+			},function(){
+				$("aside").animate({
+					height : '60px'
+				});
+				$(".none_block").css('display',"none");
+			});
+			let a = document.getElementById("introduce-coco");
+			a.addEventListener('mouseover',function(){
+				document.getElementById("introduce").style.visibility = "visible";
+				// document.getElementById("introduce").style.display = "block";
+			});
+			a.addEventListener('mouseout',function(){
+				document.getElementById("introduce").style.visibility = "hidden";
+			});
+
+			let b = document.getElementById("introduce-cong");
+			b.addEventListener('mouseover', function(){
+				// document.getElementById("introduce2").style.display = "block";
+				document.getElementById("introduce2").style.visibility = "visible";
+			});
+			b.addEventListener('mouseout', function(){
+				document.getElementById("introduce2").style.visibility = "hidden";;
+			});
+		</script>
+	</body>
+</html>

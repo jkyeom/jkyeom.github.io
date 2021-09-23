@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>학점출력</title>
+<style>
+	#container	{ 
+		background-color: navy;
+		height:120px;
+        margin: auto;
+	}
+	#container h2 {
+        margin-top: -30px;
+        text-align: center;
+        color: white;
+	}
+	#content {
+		background-color: whitesmoke;
+		display: flex;
+		flex-wrap: wrap;
+		float: left;
+		width: 960px;
+		height: 660px;
+        text-align: center;
+        margin: auto;
+	}
+	#content>article{
+		padding: 15px;
+        width: 100%;
+	}
+	aside {
+		background-color:#DCDAD9;
+		height:60px;
+		width: 120px;
+		display: flex;
+		position: absolute;
+		margin-left: 840px;
+	}
+	aside>h4 {
+		padding-left: 10px;
+	}
+	footer {
+		padding: 10px;
+		background-color:#555555; 
+		clear:both; 
+		height:100px;
+	}
+	footer>p {
+		margin: auto;
+		text-align: center;
+	}
+    input[type="text"] {
+        margin-top: 10px;
+        margin-right: 5px;
+        padding: 5px;
+        width: 80px;
+    }
+    
+    #gender {
+        padding: 5px;
+        margin-top: 10px;
+    }
+
+    #print {
+        display: none;
+    }
+    ul {
+		margin-left: -30px;
+	}
+	li {
+        list-style: none;
+		text-align: left;
+	}
+	li a {
+		vertical-align: middle;
+		float: left;
+		margin-right: 10px;
+		text-decoration: none;
+		color: blue;
+		position: relative;
+		padding: 5px;
+	}
+    .none_block{
+		display: none;
+	}
+    table {
+        
+        width: 90%;
+    }
+    /* th {
+        background-color:slategray;
+    } */
+    table tr th:not(th:last-child){
+        background-color: slategray;
+        color: white;
+        height: 50px;
+    }
+
+    input[type="button"]{
+        background-color:lightsteelblue;
+        border: 1;
+        height: 40px;
+        width: 100px;
+    }
+
+    header {
+        text-align: center;
+    }
+    .none_block {
+        display: none;
+    }
+</style>
+<script src="./js/jquery-3.6.0.js"></script>
+<script>
+    const addstudent = () => {
+        const index = $("[name=studentbody]").children().length;
+        // console.log($("[name=studentbody]").children().length);
+        const student = `<tr><td>${index}</td><td><input type="text" name='studentnum${index}'></td>
+            <td><input type="text" name='studentname${index}'></td>
+            <td><select name="sclass"><option value="과목">과목</option>
+                <option value="국어">국어</option>
+                <option value="영어">영어</option>
+                <option value="수학">수학</option></td>
+                <td><input type="text" name='score${index}'></td>
+                <td><select name="grade"><option value="학점">학점</option>
+                <option value="A+">A+</option>
+                <option value="A0">A0</option>
+                <option value="A-">A-</option></td>
+                </tr>`;
+        $("[name=studentbody]").append(student);
+    }
+</script>
+</head>
+	<body>
+		<div id="container" style="width: 960px;">
+			<header>
+                <img src="./logo.png" style="width: 80px; height: 75px;">
+                <h2>학점관리창</h2>
+            </header>
+			<section id="content">
+                <article id="calculator">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>번호</th>
+                                <th>학번</th>
+                                <th>학생 이름</th>
+                                <th>과목 이름</th>
+                                <th>과목 점수</th>
+                                <th>과목 등급</th>
+                                <th><input type="button" value="학생 추가" name="addstudent" onclick="addstudent();"></th> 
+                            </tr>
+                        </thead>
+                        <tbody name="studentbody">
+
+                        </tbody>
+                        <tfoot>
+                            <tr><td>
+                                <input type="button" value="저장" name="savegradeAll" onclick="savegrade();">
+                            </td></tr>
+                        </tfoot>
+                    </table>
+				</article>
+                <article id="print">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>번호</th>
+                                <th>학번</th>
+                                <th>학생 이름</th>
+                                <th>과목 이름</th>
+                                <th>과목 점수</th>
+                                <th>과목 등급</th>
+                            </tr>
+                        </thead>
+                        <tbody name="printbody">
+                        </tbody>
+                        <tfoot>
+                        </tfoot>
+                    </table>
+                </article>
+			</section>
+			<aside>
+                <ul>
+					<li><strong>메뉴</strong></li>
+					<li><a class = "none_block" href="./introduce.html">개발자 소개</a></li>
+					<li><a class = "none_block" href="./login.html">로그아웃</a></li>
+					<li><a class = "none_block" href="./join.html">회원가입</a></li>
+                    <li>
+                        <a onclick="pri();" class="none_block">학점출력</a>
+                    </li>
+                    <li>
+                        <a onclick="cal();" class="none_block">학점입력</a>
+                    </li>
+				</ul>
+			</aside>
+​
+        <footer>
+            <p>kh정보교육원 수강생 염진기 프로젝트</p>
+        </footer>
+		</div>
+	</body>
+    <script>
+    $("aside").hover(function(){
+			$("aside").animate({
+				height : '660px'
+			});
+			$(".none_block").css('display',"block");
+
+	    },function(){
+			$("aside").animate({
+				height : '60px'
+			});
+		$(".none_block").css('display',"none");
+	});
+    function cal(){
+        $("#print").css("display","none");
+        $("#calculator").css("display","block");
+    }
+    function pri(){
+        $("#print").css("display","block");
+        $("#calculator").css("display","none");
+    }
+    function savegrade(){
+        const $sbody = $("[name=studentbody]").children();//tr tr tr 
+                                                // [0] tr td /td td /td /tr
+        console.log($sbody);
+        if($sbody.length == 0){
+            alert('학생을 추가해주세요.')
+            return false;
+        }
+        else {
+            const entries = JSON.parse(localStorage.getItem('sgrade')) || [];
+            for(let i = 0; i < $sbody.length; i++){
+                console.log($($sbody[i]).find(`[name = studentnum${i}]`).val()); // <tr><td><input></td></tr>
+                const studentnum = $($sbody[i]).find(`[name = studentnum${i}]`).val();
+                const studentname = $($sbody[i]).find(`[name = studentname${i}]`).val();
+                const studentclass = $($sbody[i]).find(`[name = sclass]`).val();
+                const studentscore = $($sbody[i]).find(`[name = score${i}]`).val();
+                const studentgrade = $($sbody[i]).find(`[name = grade]`).val();
+                const v = new sgrade(studentnum, studentname, studentclass, studentscore, studentgrade);
+                entries.push(v);  
+            } 
+            localStorage.setItem('sgrade', JSON.stringify(entries));
+            alert('저장되었습니다.');
+        }
+    }
+    function sgrade(studentnum, studentname, sclass, score, grade){
+        this.studentnum = studentnum;
+        this.studentname = studentname;
+        this.sclass = sclass;
+        this.score = score;
+        this.grade = grade;
+    }
+
+    studentprint();
+
+    function studentprint(){
+        const entries = JSON.parse(localStorage.getItem('sgrade')) || [];
+        for(let i = 0; i < entries.length; i++){
+            const student = `<tr><td>${i}</td><td>${entries[i].studentnum}</td>
+            <td>${entries[i].studentname}</td>
+            <td>${entries[i].sclass}</td>
+                <td>${entries[i].score}</td>
+                <td>${entries[i].grade}</td>
+                </tr>`;
+            $("[name=printbody]").append(student);
+        }
+        
+    }
+    </script>
+</html>

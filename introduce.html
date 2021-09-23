@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>HTML5 레이아웃</title>
+<style>
+	#container	{ 
+		background-color: navy; 
+		height:120px;
+		margin: auto;
+	}
+	#container h2 {
+		margin-top: -30px;
+        text-align: center;
+		color: white;
+	}
+	header{
+		text-align: center;
+		height: 110px;
+	}
+	#content {
+		background-color:lightgray;
+		display: flex;
+		flex-wrap: wrap;
+		float: left;
+		width: 960px;
+		height: 600px;
+	}
+	#content>article{
+		margin-left: 10%;
+		padding: 15px;
+	}
+	li {
+		list-style-type: none;
+	}
+	li a {
+		vertical-align: middle;
+		float: left;
+		margin-right: 10px;
+		text-decoration: none;
+		color: blue;
+		position: relative;
+		padding: 5px;
+	}
+	aside {
+		background-color:#DCDAD9;
+		height:50px;
+		width: 120px;
+		display: flex;
+		position: absolute;
+		margin-left: 840px;
+	}
+	aside>h4 {
+		padding-left: 10px;
+	}
+	footer {
+		padding: 10px;
+		background-color:#555555; 
+		clear:both; 
+		height:100px;
+	}
+	footer>p {
+		margin: auto;
+		text-align: center;
+	}
+
+	ul {
+		margin-left: -30px;
+	}
+	.none_block {
+		display: none;
+	}
+</style>
+<script src="./js/jquery-3.6.0.js"></script>
+</head>
+	<body>
+		<div id="container" style="width: 960px;">
+			<header>
+				<img src="./logo.png" style="width: 80px; height: 75px;">
+				<h2>자기소개</h2>
+			</header>
+			<section id="content">
+				<article>
+					<h3>사진</h3>
+					<img src="./KakaoTalk_20210715_003343389.jpg" alt="" width= "200px" height= "200px">
+                    <p><strong>이름 : 염진기</strong></p>
+                    <p>생년월일 : 1994년 06월 12일</p>
+                    <p>거주지 : 경기도 남양주시</p>
+                    <p>학과 : 빅데이터 전공 / 생명과학 복수 전공</p>
+					<p>관심사 : <a href="./hobby.html">페이지 보기</a></p>
+					<p>인사말 : 반갑습니다. 잘부탁드립니다.</p>
+				</article>
+			</section>
+			<aside>
+				<ul>
+					<li><strong>메뉴</strong></li>
+					<li><a class = "none_block" href="./introduce.html">개발자 소개</a></li>
+					<li><a class = "none_block" href="./login.html">로그인</a></li>
+					<li><a class = "none_block" href="./join.html">회원가입</a></li>
+				</ul>
+			</aside>
+			<footer>
+				<p>kh정보교육원 수강생 염진기 프로젝트</p>
+			</footer>
+		</div>
+	<script>
+		$("aside").hover(function(){
+				$("aside").animate({
+					height : '600px'
+				});
+				$(".none_block").css('display',"block");
+
+			},function(){
+				$("aside").animate({
+					height : '60px'
+				});
+				$(".none_block").css('display',"none");
+			});
+	</script>
+	</body>
+</html>
